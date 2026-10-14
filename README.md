@@ -16,7 +16,11 @@
 
 We took the viral 8-level forex story ($312 checking → $200 first deposit → $22M managed) and tested **every number** on real public market data. **NFP Fridays really are wilder** (+14.2 pips median, p=0.005). **0.5 lots on $200 really dies in 40 pips.** A boring **56%-win / 1.5R edge really compounds** — but the same market **ruins gamblers 97% of the time**. Trading costs at retail leverage really eat **200–400% a year**. **71% of retail accounts really lose.** Verdict: **the story's arithmetic is honest; leverage is the villain, not the pattern.** Everything below is the receipt — charts, code, quiz, and a website version of this repo.
 
-🌐 **Read this repo as a website:** open [`preview.html`](preview.html) locally, or deploy free via GitHub Pages (Settings → Pages → Deploy from branch → `main` / `/ (root)`) and share `https://<you>.github.io/<repo>/preview.html` — same file also lives at [`docs/index.html`](docs/index.html).
+🌐 **Read this repo as a website — click any link (works once Pages is on, §9):**
+**[Home `/`](https://m0-ar.github.io/forex-levels-zero-to-hero-live-benchmark-2026/)** ·
+**[`/preview.html`](https://m0-ar.github.io/forex-levels-zero-to-hero-live-benchmark-2026/preview.html)** ·
+**[`/docs/preview.html`](https://m0-ar.github.io/forex-levels-zero-to-hero-live-benchmark-2026/docs/preview.html)**.
+Locally: [`preview.html`](preview.html) · [`docs/index.html`](docs/index.html). Recommended Pages setting: branch `main`, folder `/ (root)` — then all three links return 200.
 
 ![Demo: technician compounding vs gambler wipeout](assets/demo.gif)
 
@@ -212,8 +216,12 @@ Regenerate visuals: `PYTHONPATH=src python3 src/make_assets.py` → `assets/char
 .
 ├── README.md              # this file — start here
 ├── PAPER.md               # full paper draft (IMRaD + appendices)
-├── preview.html           # interactive site (quiz + charts + guide) — also served via Pages
-├── docs/index.html        # identical copy for GitHub Pages /docs serving
+├── preview.html           # interactive site (quiz + charts + guide); `assets/` paths
+├── index.html             # `/` entry → redirects to preview.html (+ fallback links)
+├── .nojekyll              # serve Pages files exactly as written (also in docs/)
+├── docs/index.html        # identical mirror for Pages /docs serving; `../assets` paths
+├── docs/preview.html      # identical mirror; `/docs/preview.html` under root source
+├── docs/.nojekyll
 ├── assets/
 │   ├── demo.gif           # 6-second thesis animation (123 KB)
 │   ├── chart_nfp.png / chart_equity.png / chart_friction.png / chart_lossrate.png
@@ -238,22 +246,40 @@ Regenerate visuals: `PYTHONPATH=src python3 src/make_assets.py` → `assets/char
 
 ## 9. View this repo as a website (GitHub Pages)
 
-This repository ships its own website — [`preview.html`](preview.html), mirrored at [`docs/index.html`](docs/index.html). Deploy it free in about 60 seconds (2026 flow):
+This repository ships its own website. Click any entry — all three resolve once Pages is set to branch `main`, folder `/ (root)`:
 
-1. Push this repo to GitHub.
+| Entry | Click | Serves |
+|---|---|---|
+| `/` | **[Home](https://m0-ar.github.io/forex-levels-zero-to-hero-live-benchmark-2026/)** | `index.html` → redirects to `preview.html` |
+| `/preview.html` | **[Interactive report](https://m0-ar.github.io/forex-levels-zero-to-hero-live-benchmark-2026/preview.html)** | `preview.html` (quiz + charts + guide) |
+| `/docs/preview.html` | **[Docs mirror](https://m0-ar.github.io/forex-levels-zero-to-hero-live-benchmark-2026/docs/preview.html)** | `docs/preview.html` (identical, `../assets` paths) |
+
+Deploy it free in about 60 seconds (2026 flow):
+
+1. Push this repo to GitHub (already at `M0-AR/forex-levels-zero-to-hero-live-benchmark-2026`).
 2. Open **Settings → Pages**.
 3. Under **Build and deployment → Source**, choose **Deploy from a branch**.
-4. Choose branch **`main`** and folder **`/ (root)`** (this `preview.html` is the page), or **`/docs`** (serves `docs/index.html` — identical content). Either works; `/docs` keeps the root clean.
-5. Save, wait ~1 minute, then visit:
-   - `https://<you>.github.io/<repo>/preview.html` (root mode), or
-   - `https://<you>.github.io/<repo>/` (docs mode).
-6. Share that link — visitors get the CEO summary, live cards, charts, beginner guide, user stories, and the graded quiz without installing anything.
+4. Choose branch **`main`** and folder **`/ (root)`** — recommended: it is the only setting under which `/`, `/preview.html`, **and** `/docs/preview.html` all return 200. (`/docs` also works for `/` and `/preview.html`, but not `/docs/preview.html` — paths mirror the source folder.)
+5. Save, wait 1–2 minutes for the "pages build and deployment" Action to go green, then click the three links above.
+
+Diagnose in 10 seconds (no login — a green deployment only proves *something* built, never that *your path* exists):
+
+```bash
+BASE="https://m0-ar.github.io/forex-levels-zero-to-hero-live-benchmark-2026"
+for p in "" "preview.html" "docs/preview.html"; do
+  printf "%s -> " "/$p"
+  curl -s -o /dev/null -w "%{http_code}\n" "$BASE/$p"
+done
+# expect with source `/ (root)`: 200 / 200 / 200
+```
+
+Why it works under either setting: `docs/preview.html` + `docs/index.html` are identical mirrors using `../assets` paths (mechanical copy — diff vs root shows only those lines); root `preview.html` uses `assets/`; root `index.html` redirects to `preview.html` with fallback links; empty `.nojekyll` sits in both `/` and `/docs` so files serve exactly as written; every asset path is relative (no absolute or local-filesystem paths), so project Pages served under `/<repo>/` resolve correctly.
 
 Local check before pushing:
 
 ```bash
 python3 -m http.server 8000
-# → http://localhost:8000/preview.html
+# → http://localhost:8000/ , http://localhost:8000/preview.html , http://localhost:8000/docs/preview.html
 ```
 
 Custom domain (optional): Settings → Pages → Custom domain → add `CNAME` file. Enforce HTTPS.
@@ -297,7 +323,7 @@ Custom domain (optional): Settings → Pages → Custom domain → add `CNAME` f
 
 ## Contributing
 
-PRs welcome — keep the bar: every numeric claim must arrive with a passing experiment writing to `results/`, charts regenerated via `src/make_assets.py`, and `make test && make run` green. Update `preview.html` + `docs/index.html` together (they are mirrors).
+PRs welcome — keep the bar: every numeric claim must arrive with a passing experiment writing to `results/`, charts regenerated via `src/make_assets.py`, and `make test && make run` green. Update `preview.html` + `docs/preview.html` + `docs/index.html` together (mechanical `assets/` ↔ `../assets` mirror — diff must show only those lines).
 
 ## License
 
