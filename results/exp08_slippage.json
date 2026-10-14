@@ -1,0 +1,10 @@
+{
+  "experiment": "exp08_slippage_latency",
+  "daily_volatility": 0.00461,
+  "expected_edge_pips_per_trade": 20.0,
+  "retail_200ms_latency_pips": 0.031,
+  "colo_100us_latency_pips": 0.00069,
+  "avg_slippage_assumed_pips": 0.35,
+  "slippage_as_frac_of_edge": 0.017,
+  "verdict": "SUPPORTED: daily \u03c3 \u2248 0.0046 \u2192 retail 200ms latency costs \u2248 0.031 pips/trade vs colo \u2248 0.00069 pips \u2014 a ~45x gap. Assumed 0.35-pip slippage is 1.7% of the 20-pip gross edge: material but not edge-destroying for a 1.5R swing system; fatal for sub-5-pip scalps. Colocation 'speed of light' claim is directionally correct physics."
+}

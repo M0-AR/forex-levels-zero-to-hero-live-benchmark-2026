@@ -1,0 +1,15 @@
+{
+  "experiment": "exp02_pip_leverage",
+  "lots": 0.5,
+  "account_usd": 200.0,
+  "usd_per_pip": 5.0,
+  "pnl_minus_100_pips_usd": -500.0,
+  "pips_to_wipe_account": 40.0,
+  "demo_win_9_usd_pips_equiv": 1.8,
+  "checks": {
+    "100pips_x_0.5lots_is_500": true,
+    "40pips_wipes_200": true,
+    "nfp_can_wipe_before_coffee": true
+  },
+  "verdict": "SUPPORTED: 0.5 lots = $5.0/pip; -100 pips = $-500 on a $200 account (2.5x the account). Only 40 adverse pips wipes it \u2014 NFP routinely exceeds that intraday. The story's liquidation is arithmetically inevitable, not a broken rule."
+}

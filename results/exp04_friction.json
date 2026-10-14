@@ -1,0 +1,20 @@
+{
+  "experiment": "exp04_friction",
+  "per_trade_pips": 1.625,
+  "annual_trades": 1200,
+  "total_pips_per_lot_year": 1995.0,
+  "annual_cost_pct_of_capital": {
+    "lev_1x": 19.9,
+    "lev_5x": 99.8,
+    "lev_10x": 199.5,
+    "lev_20x": 399.0
+  },
+  "broker_spread_crosscheck": {
+    "IG": 0.6,
+    "CMC": 0.7,
+    "Plus500": 0.8,
+    "Trading212": 1.6,
+    "assumed": 1.2
+  },
+  "verdict": "SUPPORTED: 1.625 pips/trade \u00d7 1200 + gaps = 1995 pips/lot/yr. At 20x leverage \u2248 399%/yr, at 10x \u2248 200%/yr \u2014 the MPRA 200-400% band replicates exactly. At institutional 1x leverage the same friction is \u224820%/yr. Leverage, not strategy, is the dominant P&L term for hyperactive retail."
+}

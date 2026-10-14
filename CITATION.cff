@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+title: "From $500 to $22M: Verifying the Eight-Level Retail Forex Journey Against Live Public Data"
+message: "If you use this benchmark, please cite it."
+type: software
+authors:
+  - name: "Independent Verification Lab"
+date-released: 2026-10-14
+version: 1.0.0
+repository-code: "https://example.org/forex-levels-zero-to-hero-live-benchmark-2026"
+license: MIT
+keywords:
+  - forex
+  - retail-trading
+  - backtesting
+  - reproducibility
+  - risk-management

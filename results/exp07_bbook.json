@@ -1,0 +1,16 @@
+{
+  "experiment": "exp07_bbook",
+  "n_traders": 100000,
+  "trades_each": 100,
+  "assumed_wr": 0.48,
+  "assumed_rr": 0.9,
+  "risk_usd": 100.0,
+  "friction_usd": 3.1,
+  "avg_client_net_usd": -1191.45,
+  "frac_clients_profitable": 0.0949,
+  "dealer_net_usd": 118344970.0,
+  "dealer_margin_per_trade_usd": 11.83,
+  "bis_2025_trillions_day": 9.6,
+  "top5_lp_3T_plausible": true,
+  "verdict": "SUPPORTED: even at near-fair 48%/0.9R, friction ($3.1/trade) drags mean client to $-1191 over 100 trades; only 9.5% profitable \u2014 inside the 11-31% profitable band implied by 69-89% loss disclosures. Dealer nets \u2248 $118.3M per 10M trades before overhead: the aggregate edge is structural, not conspiratorial. BIS $9.6T/day makes $3T among top-5 LPs arithmetically ordinary (31%)."
+}

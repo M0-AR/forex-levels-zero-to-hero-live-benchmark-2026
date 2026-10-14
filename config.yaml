@@ -1,0 +1,36 @@
+# Zero-to-Hero Forex Levels — live-data verification config
+data:
+  stooq_daily_url: "https://stooq.com/q/d/l/?s=eurusd&i=d"
+  frankfurter_base: "https://api.frankfurter.app/v1"
+  ecb_hist_90d: "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+  cache_dir: "data/cache"
+  start_date: "2020-01-01"
+assumptions:
+  eurusd_ref: 1.10
+  pip_usd_per_lot: 10.0   # $10 per pip per standard lot at ~1.10, scaled by price
+  spread_pips: 1.2
+  slippage_pips: 0.35
+  requote_prob: 0.05
+  requote_cost_pips: 1.5
+  levels_claims:
+    nfp_move_pips: 100
+    nfp_window_seconds: 30
+    demo_win_usd: 9
+    course_usd: 497
+    first_account_usd: 200
+    leverage_lots: 0.5
+    boring_edge_winrate: 0.56
+    boring_edge_rr: 1.5
+    live_start_usd: 500
+    first_month_trades: 11
+    first_month_pct: 6.0
+    drawdown_limit_pct: 15.0
+    sharpe_good: 1.0
+    sharpe_very_good: 2.0
+    sharpe_suspicious: 3.0
+    top5_lp_daily_trillions: 3.0
+    bis_daily_trillions_2025: 9.6
+experiments:
+  seed: 42
+  n_montecarlo_paths: 20000
+  n_trades_horizon: 500
